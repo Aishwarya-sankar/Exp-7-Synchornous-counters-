@@ -58,51 +58,59 @@ RegisterNumber:  212222100003
 */
 ### UP COUNTER
 ```
+## UP COUNTER
+
 module sync(clk,A);
 input clk;
 output reg [0:2]A;
 always@(posedge clk)
 begin
-    A[0]=(((A[1])&(A[2]))^A[0]);
-	 A[1]=(A[2])^(A[1]);
-	 A[2]=1^A[2];
-end 
+   A[0]=(((A[1])&(A[2]))^A[0]);
+	A[1]=(A[2])^A[1];
+	A[2]=1^A[2];
+end
 endmodule
+
 ```
 ### DOWN COUNTER
 ```
-module exp6a(clk,A);
-input clk;
-output reg [0:2]A;
-always@(posedge clk)
+module down(input clk,input reset,output[0:3]counter);
+reg[0:3] counter_down;
+always@(posedge clk or posedge reset)
 begin
-    A[0]=(((~A[1])&(~A[2]))^(A[0]));
-	 A[1]=(~A[2])^(A[1]);
-	 A[2]=1^A[2];
-end 
-endmodule 
+if(reset)
+counter_down<=4'd0;
+else
+counter_down<=counter_down-4'd1;
+end
+assign counter=counter_down;
+endmodule
+
 ```
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER  
 ### UP COUNTER
-![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/7f9ce1ce-d254-4bf7-b6fd-c668cc5e9c72)
+![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/35b6fb1b-767f-4839-ba0a-f106d2926fb7)
 
 ### DOWN COUNTER
-![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/da8b19bf-bb6f-4644-b46d-658fc58f1043)
+![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/a25d2f9d-1dbc-4257-9024-62bb4e938cf2)
+
 
 ### TIMING DIGRAMS FOR COUNTER  
 ### UP COUNTER
-![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/cd3fbd22-8dfc-4a96-8b01-0905ddaf2397)
+![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/fce73036-db09-46bc-9e0c-8f9833ac0f88)
+
 
 ### DOWN COUNTER
-![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/565a7f68-0a41-41fc-a818-ba32bce5b1ef)
+![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/0d9cf4e4-e738-44d9-8e95-251a1e33ebf5)
 
 
 ### TRUTH TABLE 
 ### UP COUNTER
-![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/32e6c4c3-283d-41ec-8f1a-b4745dc1dd58)
+![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/506d448e-02d7-4d87-8d31-bb0b632889c9)
 
 ### DOWN COUNTER
-![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/66ac536d-6415-466d-acbb-7f6464533cae)
+![image](https://github.com/Aishwarya-sankar/Exp-7-Synchornous-counters-/assets/121418444/68c519c7-9dad-4c98-a6ad-183b8b2b5c1f)
+
 
 ### RESULTS 
 Thus Synchornous counters up counter and down counter circuit are studied and the truth table for different logic gates are verified.
